@@ -12,11 +12,11 @@ Benchmark 1: ./adler32 /home/palaiologos/workspace/RADS.7z
 
 With a mean runtime of 310ms on a 4'355'492'375 byte file, the program can process around 14'049'975'403 bytes per second (~ 13GiB/s) on my Ryzen 9 testing box.
 
-The checksum tool is 1015 bytes large:
+The checksum tool is 1012 bytes large:
 
 ```
 % wc -c adler
-1015 adler
+1012 adler
 ```
 
 Build using `fasm adler32.asm`
