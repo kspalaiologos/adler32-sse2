@@ -5,8 +5,6 @@
 ; as it is my own contribution to an existing idea that has been already widely
 ; researched before me.                            ~ Kamila Szewczyk, Apr 2022
 
-; Build using:  fasm adler.asm
-
 format ELF64 executable
 use64
 
@@ -247,15 +245,15 @@ _start:
     mov rdi, rax
     mov eax, fstat
     syscall
-    ; mmap(0, *(uint64_t *) sb + 48, PROT_WRITE = 2, MAP_SHARED = 1, fd, 0)
+    ; mmap(0, *(uint64_t *) sb + 48, PROT_READ = 1, MAP_SHARED = 1, fd, 0)
     ; Note: Offset 48 into the stat structure is the file size, but since FASM does not supply
     ;       POSIX headers, I had to perform this calculation myself. Check `man 2 lstat`.
     pop r8
     xor r9d, r9d
     xor edi, edi
     mov eax, mmap
-    mov edx, 2
-    mov r10d, 1
+    mov edx, 1
+    mov r10d, edx
     mov rsi, [sb + 48]
     syscall
     ; Compute the adler32 checksum.
