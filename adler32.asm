@@ -291,9 +291,10 @@ _start:
     cmp edx, 9
     ja .stringify_loop
     ; Otherwise: print the value.
-    ; write(0, buf + rax, 16 - rax)
+    ; write(1, buf + rax, 16 - rax)
     lea rsi, [rbp + rax]
     xor edi, edi
+    inc edi
     mov edx, 16
     sub edx, eax
     mov eax, write
